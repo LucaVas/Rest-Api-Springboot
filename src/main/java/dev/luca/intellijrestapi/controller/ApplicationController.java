@@ -2,16 +2,10 @@ package dev.luca.intellijrestapi.controller;
 
 import dev.luca.intellijrestapi.model.SocialHousingApplication;
 import dev.luca.intellijrestapi.repository.SocialHousingApplicationRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +32,24 @@ public class ApplicationController {
         return repository.getApplicationById(id);
     }
 
-    // POST
+    // POST http://localhost:3000/api/v1/applications
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public SocialHousingApplication createApplication(@RequestBody SocialHousingApplication application) {
+    public SocialHousingApplication createApplication(@Valid @RequestBody SocialHousingApplication application) {
         repository.createApplication(application);
         return application;
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{id}")
+    public void updateApplication
+            (@RequestBody SocialHousingApplication application, @PathVariable String id) {
+        repository.updateApplicationById(id, application);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteApplication(@PathVariable String id) {
+        repository.deleteApplicationById(id);
+    }
 }

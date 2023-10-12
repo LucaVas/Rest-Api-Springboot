@@ -1,11 +1,14 @@
 package dev.luca.intellijrestapi.model;
 
+import jakarta.validation.constraints.NotEmpty;
+
 import java.sql.Timestamp;
 import java.util.Objects;
 
 public class SocialHousingApplication {
 
     private final String id;
+    @NotEmpty
     private final String status;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;

@@ -5,10 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Encapsulate data access (similar to DTO pattern)
@@ -38,5 +36,23 @@ public class SocialHousingApplicationRepository {
     public SocialHousingApplication createApplication(SocialHousingApplication application) {
         this.applications.add(application);
         return application;
+    }
+
+    public void updateApplicationById(String id, SocialHousingApplication application) {
+        this.applications  = applications.stream()
+                .map(app -> {
+                    if (Objects.equals(app.getId(), id)) {
+                        return application;
+                    }
+                    return app;
+                })
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public void deleteApplicationById(String id) {
+        this.applications =
+                applications.stream()
+                        .filter(app -> !Objects.equals(app.getId(), id))
+                        .collect(Collectors.toCollection(ArrayList::new));
     }
 }
