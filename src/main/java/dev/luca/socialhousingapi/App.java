@@ -1,4 +1,4 @@
-package dev.luca.intellijrestapi;
+package dev.luca.socialhousingapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

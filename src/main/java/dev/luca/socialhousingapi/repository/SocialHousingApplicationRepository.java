@@ -1,10 +1,8 @@
-package dev.luca.intellijrestapi.repository;
+package dev.luca.socialhousingapi.repository;
 
-import dev.luca.intellijrestapi.model.SocialHousingApplication;
+import dev.luca.socialhousingapi.model.SocialHousingApplication;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -16,10 +14,6 @@ import java.util.stream.Collectors;
 public class SocialHousingApplicationRepository {
     private List<SocialHousingApplication> applications = new ArrayList<>();
     public SocialHousingApplicationRepository() {
-        Timestamp timestamp = Timestamp.from(Instant.now());
-        this.applications.add(
-                new SocialHousingApplication(UUID.randomUUID().toString(), "New", timestamp, timestamp)
-        );
     }
 
     public List<SocialHousingApplication> getApplications() {
@@ -28,7 +22,7 @@ public class SocialHousingApplicationRepository {
 
     public SocialHousingApplication getApplicationById(String id) {
         return applications.stream()
-                .filter(app -> Objects.equals(id, app.getId()))
+                .filter(app -> Objects.equals(id, app.id()))
                 .findFirst()
                 .orElse(null);
     }
@@ -38,21 +32,25 @@ public class SocialHousingApplicationRepository {
         return application;
     }
 
-    public void updateApplicationById(String id, SocialHousingApplication application) {
+    public SocialHousingApplication updateApplicationById(String id, SocialHousingApplication application) {
         this.applications  = applications.stream()
                 .map(app -> {
-                    if (Objects.equals(app.getId(), id)) {
+                    if (Objects.equals(app.id(), id)) {
                         return application;
                     }
                     return app;
                 })
                 .collect(Collectors.toCollection(ArrayList::new));
+        return applications.stream()
+                .filter(app -> Objects.equals(app.id(), id))
+                .findFirst()
+                .orElse(null);
     }
 
     public void deleteApplicationById(String id) {
         this.applications =
                 applications.stream()
-                        .filter(app -> !Objects.equals(app.getId(), id))
+                        .filter(app -> !Objects.equals(app.id(), id))
                         .collect(Collectors.toCollection(ArrayList::new));
     }
 }

@@ -6,13 +6,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.1.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>dev.luca</groupId>
-	<artifactId>intellij-rest-api</artifactId>
+	<artifactId>social-housing-api</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
-	<name>intellij-rest-api</name>
-	<description>Rest API</description>
+	<name>social-housing-api</name>
+	<description>Rest API for Social Housing</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

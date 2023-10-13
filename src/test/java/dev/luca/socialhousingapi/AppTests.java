@@ -1,10 +1,10 @@
-package dev.luca.intellijrestapi;
+package dev.luca.socialhousingapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class IntellijRestApiApplicationTests {
+class AppTests {
 
 	@Test
 	void contextLoads() {

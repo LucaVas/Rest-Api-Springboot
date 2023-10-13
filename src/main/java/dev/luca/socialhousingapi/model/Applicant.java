@@ -1,4 +1,4 @@
-package dev.luca.intellijrestapi.model;
+package dev.luca.socialhousingapi.model;
 
 import java.sql.Timestamp;
 

@@ -1,6 +1,7 @@
-package dev.luca.intellijrestapi.model;
+package dev.luca.socialhousingapi.model;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -8,10 +9,11 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 public class ApplicantTest {
 
     @Test
-    void create_new_applicant() {
+    void should_create_new_applicant() {
         // Given
         Timestamp timestamp = Timestamp.from(Instant.now());
 
